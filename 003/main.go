@@ -54,5 +54,10 @@ func main() {
 	fmt.Println("")
 	fmt.Println(list1)
 	fmt.Println("")
+	fmt.Println("I can add something to front of list")
+	list1 = append([]int{0}, list1...)
+	fmt.Println("")
+	fmt.Println(list1)
+	fmt.Println("")
 
 }
