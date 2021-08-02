@@ -23,4 +23,36 @@ func main() {
 	test := uint64(18446744073709551615) // try chaning this number
 	fmt.Printf("%b\n", test)
 
+	fmt.Println("")
+	fmt.Println("When deciding which int to use, think memory use.")
+	fmt.Println("You only have so much ram. Why store a list of integers each with 64 bits?")
+	fmt.Println("If that list is very long and you only need 8 bits for each number...")
+	fmt.Println("")
+	fmt.Println("Space for Zeros and Ones is precious!")
+	fmt.Println("")
+	fmt.Println("Now lets talk about lists or arrays.")
+	fmt.Println("")
+
+	list1 := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	fmt.Println(list1)
+	fmt.Println("")
+	fmt.Println("I can add one item to the end")
+	list1 = append(list1, 11)
+	fmt.Println("")
+	fmt.Println(list1)
+	fmt.Println("")
+	fmt.Println("I can add two items to the end")
+	list1 = append(list1, 12, 13)
+	fmt.Println("")
+	fmt.Println(list1)
+	fmt.Println("")
+	list2 := []int{100, 200, 300}
+	fmt.Println(list2)
+	fmt.Println("")
+	fmt.Println("I can add another list to end")
+	list1 = append(list1, list2...)
+	fmt.Println("")
+	fmt.Println(list1)
+	fmt.Println("")
+
 }

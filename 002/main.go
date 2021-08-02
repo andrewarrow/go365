@@ -19,7 +19,7 @@ func main() {
 	fmt.Println("This is easier to understand if we look at the binary zeros and ones")
 	fmt.Printf("%b %b\n", ui1, ui2)
 	fmt.Println("")
-	fmt.Println("We had eight positions from lesson 001 with a byte and now we have double that")
+	fmt.Println("We had eight positions from lesson 001 with a byte and now we have doubled that")
 	fmt.Println("")
 	fmt.Println("32768 16384 8192 4096 2048 1024 512 256 128 64 32 16 8 4 2 1")
 	fmt.Println("    1     1    1    1    1    1   1   1   1  1  1  1 1 1 1 1")
