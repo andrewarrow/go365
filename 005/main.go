@@ -50,7 +50,7 @@ func MakeConnections() {
 func SendZerosAndOnes(conn net.Conn) {
 	for {
 		oneByte := make([]byte, 1)
-		rand.Read(oneByte) // this will be 8 zeros and 1 something like 01001100 or 10100111, etc.
+		rand.Read(oneByte) // this will be 8 zeros and ones something like 01001100 or 10100111, etc.
 
 		conn.Write(oneByte)
 		time.Sleep(time.Second * 1)
