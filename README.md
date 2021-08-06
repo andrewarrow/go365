@@ -80,3 +80,4 @@ of that day and nod your head affirmitively agreeing you `grok` it.
 | [002](https://github.com/andrewarrow/go365/blob/main/002/main.go) | an uint16 is a number from 0 to 65535 | 
 | [003](https://github.com/andrewarrow/go365/blob/main/003/main.go) | know your ints and appends            |
 | [004](https://github.com/andrewarrow/go365/blob/main/004/main.go) | maps and goroutines                   |
+| [005](https://github.com/andrewarrow/go365/blob/main/005/main.go) | building something real               |

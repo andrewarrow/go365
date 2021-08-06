@@ -9,7 +9,7 @@ import (
 
 // go365 lesson 004: maps and goroutines
 
-func main1() {
+func main() {
 
 	go func() {
 		fmt.Println("got here 1.")
@@ -88,7 +88,7 @@ func main3() {
 // maps, linking a key with a value and doing that safely in multiple goroutines,
 // we can start building something real
 
-func main() {
+func main4() {
 	thing, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		fmt.Println(err)
@@ -114,3 +114,5 @@ func MakeConnections() {
 		time.Sleep(time.Second * 3)
 	}
 }
+
+// Run the above code over and over and I'll see you tomorrow in 005
