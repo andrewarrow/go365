@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"sync"
 	"time"
 )
 
 // go365 lesson 004: maps and goroutines
 
-func main() {
+func main1() {
 
 	go func() {
 		fmt.Println("got here 1.")
@@ -55,7 +56,7 @@ func main2() {
 // run this and notice what a map does, it maps a key and a value together.
 // you can access the same map from two differrent goroutines but it
 // isn't safe. You might not see the problem right away
-// but given enough time, you will get the error `fatal error: concurrent map writes`
+// but given enough time, you will get the error `fatal error: concurrent map read or write`
 
 // a way to fix this is with a mutex lock
 
@@ -82,5 +83,34 @@ func main3() {
 	time.Sleep(time.Second * 5) // try removing this line, notice the change?
 }
 
-func main4() {
+// with these fundamentals: size of integers, placing them in lists,
+// goroutines and running multiple things at the same time,
+// maps, linking a key with a value and doing that safely in multiple goroutines,
+// we can start building something real
+
+func main() {
+	thing, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	go MakeConnections()
+	for {
+		conn, _ := thing.Accept()
+		remote := conn.RemoteAddr()
+		fmt.Println(remote)
+	}
+}
+
+func MakeConnections() {
+	for {
+		fmt.Println("making a connection")
+		conn, err := net.Dial("tcp", "localhost:8080")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("connection established:", conn.RemoteAddr())
+		time.Sleep(time.Second * 3)
+	}
 }
