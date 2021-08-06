@@ -74,9 +74,8 @@ of that day and nod your head affirmitively agreeing you `grok` it.
 
 # table of contents
 
-+-----+---------------------------------------+
 | 001 | a byte is a number from 0 to 255      |
+| --- | ------------------------------------- |
 | 002 | an uint16 is a number from 0 to 65535 | 
 | 003 | know your ints and appends            |
 | 004 | maps and Goroutines                   |
-+-----+---------------------------------------+
