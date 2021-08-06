@@ -66,10 +66,10 @@ Each day builds on the next. The first few days have a lot of `fmt.Println("text
 get used to a very common way to write messages to the user. And you yourself are the very first user
 of your programs.
 
-The first few days also have just one file `main.go`. After you get the hang of some core concepts
+The first few days have just one file `main.go`. After you get the hang of some core concepts
 there will be days with more than one file, each one named something more descriptive that just the word main.
 
-Each day has a few word title. Make sure when you finish a day and move on you can honestly read the title
+Each day has a title. Make sure when you finish a day and move on you can honestly read the title
 of that day and nod your head affirmitively agreeing you `grok` it.
 
 # table of contents
