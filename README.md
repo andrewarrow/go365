@@ -77,6 +77,6 @@ of that day and nod your head affirmitively agreeing you `grok` it.
 | day | title                                 |
 | --- | ------------------------------------- |
 | [001](https://github.com/andrewarrow/go365/blob/main/001/main.go) | a byte is a number from 0 to 255      |
-| 002 | an uint16 is a number from 0 to 65535 | 
-| 003 | know your ints and appends            |
-| 004 | maps and goroutines                   |
+| [002](https://github.com/andrewarrow/go365/blob/main/002/main.go) | an uint16 is a number from 0 to 65535 | 
+| [003](https://github.com/andrewarrow/go365/blob/main/003/main.go) | know your ints and appends            |
+| [004](https://github.com/andrewarrow/go365/blob/main/004/main.go) | maps and goroutines                   |
