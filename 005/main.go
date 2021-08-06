@@ -62,5 +62,8 @@ func ReadInZerosAndOnes(ip string, conn net.Conn) {
 		oneByte := make([]byte, 1)
 		conn.Read(oneByte)
 		fmt.Printf("Receieved %08b from client %s\n", oneByte, ip)
+		// 08 in between the % and b means
+		// make it 8 in length and add 0 to the front is they are missing
+		// try it with just %b and see the difference
 	}
 }
