@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -26,7 +27,7 @@ func main() {
 // two more we create.
 
 // then rename main above to main2 and rename this main2 below to main
-// this is a easy way to switch back and forth which main function you run
+// this is ain easy way to switch back and forth which main function you run
 
 func main2() {
 	m := map[string]int{}
@@ -49,4 +50,37 @@ func main2() {
 	}()
 
 	time.Sleep(time.Second * 5) // try removing this line, notice the change?
+}
+
+// run this and notice what a map does, it maps a key and a value together.
+// you can access the same map from two differrent goroutines but it
+// isn't safe. You might not see the problem right away
+// but given enough time, you will get the error `fatal error: concurrent map writes`
+
+// a way to fix this is with a mutex lock
+
+func main3() {
+	mutex := sync.Mutex{}
+	m := map[string]int{}
+
+	go func() {
+		mutex.Lock()
+		m["abc"] = 1
+		mutex.Unlock()
+	}()
+
+	go func() {
+		for {
+			mutex.Lock()
+			m["abc"]++
+			fmt.Println(m["abc"])
+			mutex.Unlock()
+			time.Sleep(time.Second * 1) // try removing this line, notice the change?
+		}
+	}()
+
+	time.Sleep(time.Second * 5) // try removing this line, notice the change?
+}
+
+func main4() {
 }
