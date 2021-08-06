@@ -76,7 +76,7 @@ of that day and nod your head affirmitively agreeing you `grok` it.
 
 | day | title                                 |
 | --- | ------------------------------------- |
-| 001 | a byte is a number from 0 to 255      |
+| [001](https://github.com/andrewarrow/go365/blob/main/001/main.go) | a byte is a number from 0 to 255      |
 | 002 | an uint16 is a number from 0 to 65535 | 
 | 003 | know your ints and appends            |
-| 004 | maps and Goroutines                   |
+| 004 | maps and goroutines                   |
