@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// go365 lesson 003: know your ints
+// go365 lesson 003: know your ints and appends
 
 func main() {
 	fmt.Println("")
