@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// go365 lesson 001: a byte is a number from 0 to 255
+// lesson 001: a byte is a number from 0 to 255
 
 func main() {
 	fmt.Println("")

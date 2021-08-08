@@ -81,7 +81,7 @@ of that day and nod your head affirmitively agreeing you `grok` it.
 | [003](https://github.com/andrewarrow/go365/blob/main/003/main.go) | know your ints and appends            |
 | [004](https://github.com/andrewarrow/go365/blob/main/004/main.go) | maps and goroutines                   |
 | [005](https://github.com/andrewarrow/go365/blob/main/005/main.go) | building something real               |
-| [006](https://github.com/andrewarrow/go365/blob/main/006/main.go) | record in a map the stats             |
+| [006](https://github.com/andrewarrow/go365/blob/main/006/main.go) | make your iot talkers act more real   |
 | [007](https://github.com/andrewarrow/go365/blob/main/007/main.go) |                |
 | [008](https://github.com/andrewarrow/go365/blob/main/008/main.go) |                |
 | [009](https://github.com/andrewarrow/go365/blob/main/009/main.go) |                |

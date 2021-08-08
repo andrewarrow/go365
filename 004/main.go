@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// go365 lesson 004: maps and goroutines
+// lesson 004: maps and goroutines
 
 func main() {
 

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-// go365 lesson 002: an uint16 is a number from 0 to 65535
+// lesson 002: an uint16 is a number from 0 to 65535
 
 func main() {
 	fmt.Println("")

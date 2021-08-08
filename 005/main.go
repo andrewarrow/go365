@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// go365 lesson 005: building something real
+// lesson 005: building something real
 
 // picture every IoT device in the entire world making a tcp connection
 // to this program. Millions of them, connecting, sending data (zeros and ones)
