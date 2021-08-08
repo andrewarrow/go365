@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"math/rand"
 	"net"
 	"time"
@@ -17,8 +18,8 @@ import (
 // we need:
 // a random number of new connections per second,
 // a random amount of data to send in each "payload",
-// a random amount of time to continue sending before disconnecting,
-// and a random amount of time to wait before re-connecting,
+// a random rate per second of sending these payloads,
+// and a random amount of time to continue sending before disconnecting,
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
@@ -47,7 +48,7 @@ func MakeConnections() {
 		}
 		fmt.Println("connection established:", conn.RemoteAddr())
 		go SendZerosAndOnes(conn)
-		delay := rand.Intn(1000)
+		delay := time.Duration(rand.Intn(1000))
 		time.Sleep(time.Millisecond * delay) // this will create a random number per second
 		// when delay is a small number like 10 or 20, or 40 over and over, and it randomly will be sometimes
 		// you'll get a bunch of new connections back to back very fast
@@ -59,21 +60,31 @@ func MakeConnections() {
 
 func SendZerosAndOnes(conn net.Conn) {
 	for {
-		oneByte := make([]byte, 1)
-		rand.Read(oneByte) // this will be 8 zeros and ones something like 01001100 or 10100111, etc.
+		size := rand.Intn(10) + 1 // add 1 to make range 1 to 10 vs 0 to 9
+		payload := make([]byte, size)
+		rand.Read(payload)
 
-		conn.Write(oneByte)
-		time.Sleep(time.Second * 1)
+		conn.Write(payload)
+		delay := time.Duration(rand.Intn(1000))
+		time.Sleep(time.Millisecond * delay) // this will also create a random number per second
+
+		if rand.Intn(100) > 95 { // about a 5% chance this connection dies
+			conn.Close()
+			break
+		}
 	}
 }
 
 func ReadInZerosAndOnes(ip string, conn net.Conn) {
 	for {
-		oneByte := make([]byte, 1)
-		conn.Read(oneByte)
-		fmt.Printf("Receieved %08b from client %s\n", oneByte, ip)
-		// 08 in between the % and b means
-		// make it 8 in length and add 0 to the front is they are missing
-		// try it with just %b and see the difference
+		payload := make([]byte, 10)  // we don't know the size, but we know max will be 10
+		n, err := conn.Read(payload) // the Read function is smart enough to only place the number of available bytes in to payload
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			fmt.Println(err)
+		}
+		fmt.Printf("Receieved %08b from client %s\n", payload[0:n], ip)
 	}
 }
