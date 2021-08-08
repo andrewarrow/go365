@@ -88,3 +88,11 @@ func ReadInZerosAndOnes(ip string, conn net.Conn) {
 		fmt.Printf("Receieved %08b from client %s\n", payload[0:n], ip)
 	}
 }
+
+// run and leave running for about two to three minutes.
+// try and follow a certain client that stays connected for a long time
+// think about questions like, what is the average length of time a client stays connected?
+// what is the average amount of data a client sends over its life?
+// what are some stats on which clients sent how much data
+
+// try and make the output going to fmt.Print less in volume but better in quality
