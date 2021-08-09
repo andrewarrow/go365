@@ -5,11 +5,13 @@ import (
 	"io"
 	"math/rand"
 	"net"
+	"sync"
 	"time"
 )
 
 // lesson 007: quality vs quantity in fmt.Print
 
+var statsMutex = sync.Mutex{}
 var statsConnection = map[string]int64{}
 var statsData = map[string]int64{}
 
@@ -26,7 +28,9 @@ func main() {
 		conn, _ := thing.Accept()
 		remote := conn.RemoteAddr()
 		ip := remote.String()
+		statsMutex.Lock()
 		statsConnection[ip] = time.Now().Unix()
+		statsMutex.Unlock()
 		go ReadInZerosAndOnes(ip, conn)
 	}
 }
@@ -67,12 +71,16 @@ func ReadInZerosAndOnes(ip string, conn net.Conn) {
 		n, err := conn.Read(payload)
 		if err != nil {
 			if err == io.EOF {
+				statsMutex.Lock()
 				delta := time.Now().Unix() - statsConnection[ip]
+				statsMutex.Unlock()
 				fmt.Printf("%s Lasted %d seconds.\n", ip, delta)
 				break
 			}
 		}
 
+		statsMutex.Lock()
 		statsData[ip] += int64(n)
+		statsMutex.Unlock()
 	}
 }
