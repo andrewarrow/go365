@@ -11,8 +11,9 @@ import (
 
 // lesson 007: quality vs quantity in fmt.Print
 
-var statsMutex = sync.Mutex{}
+var statsMutex = sync.Mutex{} // try removing this and any refernce to it, run it and see error
 var statsConnection = map[string]int64{}
+var statsLength = map[string]int64{}
 var statsData = map[string]int64{}
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	go DisplayStats()
 	go MakeConnections()
 	for {
 		conn, _ := thing.Accept()
@@ -73,14 +75,25 @@ func ReadInZerosAndOnes(ip string, conn net.Conn) {
 			if err == io.EOF {
 				statsMutex.Lock()
 				delta := time.Now().Unix() - statsConnection[ip]
+				statsLength[ip] = delta
 				statsMutex.Unlock()
-				fmt.Printf("%s Lasted %d seconds.\n", ip, delta)
 				break
 			}
 		}
 
 		statsMutex.Lock()
 		statsData[ip] += int64(n)
+		statsMutex.Unlock()
+	}
+}
+
+func DisplayStats() {
+	for {
+		time.Sleep(time.Millisecond * 3000)
+		statsMutex.Lock()
+		fmt.Printf("Total      : %d\n", len(statsData))
+		fmt.Printf("Total Died : %d\n", len(statsLength))
+		fmt.Println("")
 		statsMutex.Unlock()
 	}
 }
