@@ -27,7 +27,11 @@ func main() {
 	go DisplayStats()
 	go MakeConnections()
 	for {
-		conn, _ := thing.Accept()
+		conn, err := thing.Accept()
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 		remote := conn.RemoteAddr()
 		ip := remote.String()
 		statsMutex.Lock()
